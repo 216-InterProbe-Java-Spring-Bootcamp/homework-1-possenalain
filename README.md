@@ -1,46 +1,27 @@
 # first-homework
 216-InterProbe-Java-Spring-Bootcamp First Homework
+### Note
+There are two branches :
+        `main` I tried to use `@ManyToOne` for Product-Comment tables.
+it worked fine but I had difficulties with querries.
 
+`without-relationships`
+This is is where my final solution is found.
 
-## Querries used to create tables
+### Completed steps
 
+1. Bir ürüne ait yorumları listeleyen bir metot yazınız.
+2. Verilen tarih aralıklarında belirli bir ürüne yapılmış olan yorumları gösteren bir metot yazınız.
+3. Bir kullanıcının yapmış olduğu yorumları listeleyen bir metot yazınız.
+4. Bir kullanıcının belirli tarihler aralığında yapmış olduğu yorumları gösteren bir metot yazınız.
+5. Son kullanma tarihi geçmiş ürünleri listeleyen bir metot yazınız.
+6. Son kullanma tarihi geçmemiş ürünleri listeleyen bir metot yazınız. (Son kullanma tarihi boş olanlar da gelmeli.)
 
-### product
-```
-create table product 
-(id bigint not null, 
-expiration_date date, 
-name varchar(255) not null, 
-price double not null, 
-primary key (id))
-```
+## Usage
 
-### product_comment
+You will need to be able to run Spring applications.
 
-```
-create table product_comment 
-(id bigint not null, 
-comment varchar(500) not null, 
-comment_date date, 
-product_id bigint not null, 
-usr_id bigint not null, 
-primary key (id))
-```
+clone the repository to the local machine.
 
-### users tables
+checkout without-relationships branch  
 
-```
-create table usr 
-(id bigint not null, 
-email varchar(50) not null, 
-name varchar(50) not null, 
-telephone varchar(15) not null, 
-surname varchar(50) not null, 
-primary key (id))
-```
-
-#### FK
-```
-alter table product_comment add constraint FK_PRODUCT_COMMENT foreign key (product_id) references product
-alter table product_comment add constraint FK_USR_COMMENT foreign key (usr_id) references usr
-```
