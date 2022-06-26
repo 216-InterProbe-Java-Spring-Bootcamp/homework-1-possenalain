@@ -9,7 +9,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "PRODUCT_COMMENT")
+@Table(name = "PRODUCT_COMMENT", indexes = {
+        @Index(name = "idx_productcomment_usr_id", columnList = "USR_ID")
+})
 @Getter
 @Setter
 
@@ -31,18 +33,24 @@ public class ProductComment {
     @Temporal(TemporalType.DATE)
     private Date commentDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Product.class)
     @JoinColumn(
             name = "PRODUCT_ID",
             foreignKey = @ForeignKey(name = "FK_PRODUCT_COMMENT"),
+            referencedColumnName = "ID",
             nullable = false)
     private Product productId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Usr.class)
     @JoinColumn(
             name = "USR_ID",
             foreignKey = @ForeignKey(name = "FK_USR_COMMENT"),
+            referencedColumnName = "ID",
             nullable = false)
     private Usr usrId;
+
+
+
 
 }
