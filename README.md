@@ -2,7 +2,7 @@
 216-InterProbe-Java-Spring-Bootcamp First Homework
 
 
-## Querries used to create tabbles
+## Querries used to create tables
 
 
 ### product
