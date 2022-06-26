@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Date;
 
 @Entity
@@ -35,40 +34,4 @@ public class Product {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
-    @Entity
-    @Table(name ="USER")
-    @Getter
-    @Setter
-    public static class User {
-        @Id
-        @GeneratedValue(generator = "User")
-        @SequenceGenerator(
-                name = "User",
-        sequenceName = "USER_ID_SEQ"
-        )
-        private Long id;
-
-        @Column(name = "NAME",
-                length = 50,
-                nullable = false)
-        private String name;
-
-        @Column(name = "SURNAME",
-                length = 50,
-                nullable = false)
-        private String surname;
-
-        @Email
-        @Column(name = "EMAIL",
-                length = 50,
-                nullable = false)
-        private String email;
-
-
-        @Column(name = "TELEPHONE",
-                length = 15,
-                nullable = false)
-        private String phoneNumber;
-
-    }
 }
