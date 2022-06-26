@@ -10,4 +10,6 @@ public interface ProductCommentDao
     Optional<ProductComment> findAllByProductId(Long productId);
 
     Optional<ProductComment> findByIdAndCommentDateBetween(Long productId, LocalDate from, LocalDate to);
+
+    Optional<ProductComment> findAllByUsrId(Long usrId);
 }

@@ -30,7 +30,6 @@ public class ProductComment {
     private LocalDate commentDate;
 
     @Column(name = "PRODUCT_ID",
-            length = 500,
             nullable = false)
     private Long productId;
 

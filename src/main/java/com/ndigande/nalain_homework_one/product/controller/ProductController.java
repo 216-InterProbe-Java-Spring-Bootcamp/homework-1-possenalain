@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @GetMapping(path="/{productId}/comments/all")
-    public Optional<ProductComment> getComments(@PathVariable("productId") Long productId){
+    public Optional<ProductComment> getProductAllComments(@PathVariable("productId") Long productId){
 
         //check product exist
         boolean productExists = productDao.existsById(productId);
@@ -58,13 +58,6 @@ public class ProductController {
         LocalDate from = LocalDate.parse(fromStr);
         LocalDate to = LocalDate.parse(toStr);
 
-        System.out.println("##### dbg"+from);
-        System.out.println("##### dbg"+to);
-
-        System.out.println(from);
-        System.out.println(to);
-
-        System.out.println("############################################## dbg");
         //get all comments btn this period
 
         return productCommentDao.findByIdAndCommentDateBetween(productId,from,to);
