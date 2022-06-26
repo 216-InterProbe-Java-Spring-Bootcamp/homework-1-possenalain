@@ -7,6 +7,7 @@ import com.ndigande.nalain_homework_one.usr.entity.Usr;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,20 @@ public class UsrController {
         //get all comments for it
         return productCommentDao.findAllByUsrId(usrId);
     }
+
+    @GetMapping(path="/{usrId}/comments")
+    public Optional<ProductComment> findByUsrIdAndCommentDateBetween(
+            @PathVariable("usrId") Long usrId,
+            @RequestParam(value = "from",required = true) String fromStr,
+            @RequestParam(value = "to",required = true) String toStr){
+
+        LocalDate from = LocalDate.parse(fromStr);
+        LocalDate to = LocalDate.parse(toStr);
+
+        //get all comments btn this period
+
+        return productCommentDao.findByUsrIdAndCommentDateBetween(usrId,from,to);
+    }
+
 }
 

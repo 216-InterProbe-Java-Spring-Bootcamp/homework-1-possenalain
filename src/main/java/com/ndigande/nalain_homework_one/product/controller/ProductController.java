@@ -59,8 +59,11 @@ public class ProductController {
         LocalDate to = LocalDate.parse(toStr);
 
         //get all comments btn this period
-
         return productCommentDao.findByIdAndCommentDateBetween(productId,from,to);
+    }
+    @GetMapping(path = "/?expired=true")
+    public Optional<Product> findByExpirationDate(){
+        return productDao.findByExpirationDateBefore(LocalDate.now());
     }
 
 }
