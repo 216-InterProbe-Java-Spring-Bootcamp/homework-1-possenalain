@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface ProductDao extends JpaRepository<Product, Long> {
     Optional<Product> findByExpirationDateBefore(LocalDate now);
 
+    Optional<Product> findByExpirationDateOrExpirationDateAfter(LocalDate o, LocalDate today);
+
 /*
     List<Product> findByNameContaning(String name);*/
 

@@ -62,8 +62,13 @@ public class ProductController {
         return productCommentDao.findByIdAndCommentDateBetween(productId,from,to);
     }
     @GetMapping(path = "/?expired=true")
-    public Optional<Product> findByExpirationDate(){
+    public Optional<Product> getExpiredProducts(){
         return productDao.findByExpirationDateBefore(LocalDate.now());
+    }
+
+    @GetMapping(path = "/?expired=false")
+    public Optional<Product> getNullOrNonExpiredProducts(){
+        return productDao.findByExpirationDateOrExpirationDateAfter(null,LocalDate.now());
     }
 
 }
