@@ -1,17 +1,14 @@
 package com.ndigande.nalain_homework_one.product_comment.entity;
 
-import com.ndigande.nalain_homework_one.product.entity.Product;
-import com.ndigande.nalain_homework_one.usr.entity.Usr;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "PRODUCT_COMMENT", indexes = {
-        @Index(name = "idx_productcomment_usr_id", columnList = "USR_ID")
-})
+@Table(name = "PRODUCT_COMMENT")
 @Getter
 @Setter
 
@@ -30,25 +27,20 @@ public class ProductComment {
     private String comment;
 
     @Column(name = "COMMENT_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date commentDate;
+    private LocalDate commentDate;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Product.class)
-    @JoinColumn(
-            name = "PRODUCT_ID",
-            foreignKey = @ForeignKey(name = "FK_PRODUCT_COMMENT"),
-            referencedColumnName = "ID",
+    @Column(name = "PRODUCT_ID",
+            length = 500,
             nullable = false)
-    private Product productId;
+    private Long productId;
 
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Usr.class)
     @JoinColumn(
             name = "USR_ID",
             foreignKey = @ForeignKey(name = "FK_USR_COMMENT"),
             referencedColumnName = "ID",
             nullable = false)
-    private Usr usrId;
+    private Long usrId;
 
 
 

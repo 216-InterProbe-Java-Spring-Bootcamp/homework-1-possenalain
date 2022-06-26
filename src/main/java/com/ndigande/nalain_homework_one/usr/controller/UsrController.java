@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usrs")
@@ -19,9 +20,16 @@ public class UsrController {
     public List<Usr> findAll(){
         return usrDao.findAll();
     }
+
     @PostMapping(path = "")
     public Usr save(@RequestBody Usr usr){
         return usrDao.save(usr);
+    }
+
+    @GetMapping(path="/{usrId}")
+    public Optional<Usr> findById(@PathVariable("usrId") Long usrId){
+        System.out.println(usrId);
+        return usrDao.findById(usrId);
     }
 }
 

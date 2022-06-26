@@ -2,12 +2,12 @@ package com.ndigande.nalain_homework_one.product_comment.dao;
 import com.ndigande.nalain_homework_one.product_comment.entity.ProductComment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Optional;
 
 public interface ProductCommentDao
         extends JpaRepository<ProductComment,Long> {
+    Optional<ProductComment> findAllByProductId(Long productId);
 
-    List<ProductComment> findByProductCommentId(Long productCommentId);
-    List<ProductComment> findByCommentId(Long productCommentId);
-
+    Optional<ProductComment> findByIdAndCommentDateBetween(Long productId, LocalDate from, LocalDate to);
 }

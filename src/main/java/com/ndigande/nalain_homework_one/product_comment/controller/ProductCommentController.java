@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/comments")
@@ -27,23 +26,7 @@ public class ProductCommentController {
     @PostMapping(path="")
     public ProductComment save(@RequestBody ProductComment productComment){
 
-        Long usr_id=productComment.getUsrId().getId();
-        Long product_id=productComment.getProductId().getId();
-
-        Optional<ProductComment> productCmt=productDao.findById(product_id).map(product -> {
-            productComment.setProductId(product);
-
-            return productComment;
-        });
-
-        Optional<ProductComment> productCmt2=usrDao.findById(usr_id).map(usr -> {
-            productComment.setUsrId(usr);
-
-            return productComment;
-        });
-
         return productCommentDao.save(productComment);
     }
-
 
 }
