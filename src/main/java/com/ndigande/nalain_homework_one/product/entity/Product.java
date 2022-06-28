@@ -1,10 +1,14 @@
 package com.ndigande.nalain_homework_one.product.entity;
 
+import com.ndigande.nalain_homework_one.product_comment.entity.ProductComment;
 import lombok.Getter;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -31,7 +35,10 @@ public class Product {
     private Double price;
 
     @Column(name = "EXPIRATION_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date expirationDate;
+    private LocalDate expirationDate;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productId")
+    private Set<ProductComment> productComments;
 
 }

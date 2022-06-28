@@ -1,11 +1,14 @@
 package com.ndigande.nalain_homework_one.usr.entity;
 
 
+import com.ndigande.nalain_homework_one.product_comment.entity.ProductComment;
 import lombok.Getter;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Set;
 
 @Entity
 @Table(name ="USR")
@@ -41,5 +44,9 @@ public class Usr {
             length = 15,
             nullable = false)
     private String phoneNumber;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usrId")
+    private Set<ProductComment> productComments;
 
 }
